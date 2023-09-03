@@ -1,0 +1,50 @@
+body{
+    background: #383a3d;
+}
+
+form{
+    background: #fff;
+}
+
+.form-container{
+    border-radius: 10px;
+    padding: 30px;
+}
+
+table tr:not(:first-child){
+    cursor: pointer;transition: all .25s ease-in-out;
+}
+
+table tr:not(:first-child):hover{background-color: #ddd;}
+
+.hideFromTbl {
+    display: none;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container-fluid {
+    padding-left: 2em !important;
+    padding-right: 0 !important;
+}
+
+.form-wrapper {
+    position: relative;
+    height: 76vh;  /* Takes the full height of the window */
+    /* display: flex; */
+    flex-direction: column;
+}
+
+.d-flex {
+    margin-top: auto; /* Pushes the button div to the bottom */
+    position: absolute;
+    width: 100%;
+    bottom: 1em;
+}

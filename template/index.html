@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="login_container" style="display: block;">
+        <section class="d-flex justify-content-center align-items-center container-fluid" style="height: 100vh;">
+                <form class="form-container col-sm-4" id="loginForm">
+                    <div class="form-group">
+                        <h4 class="text-center font-weight-bold">Login</h4>
+                        <label for="InputName">Username</label>
+                        <input type="text" class="form-control" id="InputName" placeholder="Enter User Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputPassword">Password</label>
+                        <input type="password" class="form-control" id="InputPassword" placeholder="Enter Password" required>
+                    </div>
+                    <div class="text-center" style="padding-top: 1vh;">
+                        <input type="submit" name='btn' id="loginBtn" class="btn btn-info col-md-4" value="Login">
+                    </div>
+                </form>
+        </section>
+    </div>
+
+    <section id="home_container" style="display: none;">
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+            <h6 style="color: white"> Home</h6>
+        </nav>
+        
+        <!-- style="margin-top: 5%;" -->
+        <div class="row container-fluid" >
+            <div class="form-outline mb-4" style="margin-top: 1%;">
+                <input type="search" class="form-control" id="homeTbl-search-input" placeholder="Search...">
+                <!-- <label class="form-label" for="datatable-search-input">Search</label> -->
+            </div>
+            
+            <div class="col-md-4" style="background-color: #F5F7FA;">
+                <form id="crtForm" class="form-wrapper">
+                    <div class="form-group" style="margin: 1em;">
+                        <label>SKU:</label>
+                        <input type="text" class="form-control col-md-6" name="home_SKU" id="home_SKU" value="" readonly>
+                        <label style="margin-top: 1em;">Description:</label>
+                        <input type="text" class="form-control col-md-6" name="home_DES" id="home_DES" value="" readonly>
+                        <label style="margin-top: 1em;">Price:</label>
+                        <input type="text" class="form-control col-md-6" name="home_PRICE" id="home_PRICE" value="" readonly>
+                        <label style="margin-top: 1em;">Quantity:</label>
+                        <input type="text" class="form-control col-md-6" name="home_QUA" id="home_QUA" value="">
+                        <label style="margin-top: 1em;">Type:</label>
+                        <input type="text" class="form-control col-md-6" name="home_TYPE" id="home_TYPE" value="" readonly>
+                    </div>
+
+                    <div class="d-flex justify-content-center" style="margin-top: 1em;">
+                        <input type="submit" id="home_btnUpdate" value="Update" class="btn btn-warning m-1">
+                        <input type="submit" id="home_btnClear" value="Clear" class="btn btn-success m-1">
+                        <input type="submit" id="home_btnDownload" value="Download" class="btn btn-info m-1">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-8 justify-content-center">
+                <div style="height: 80vh; overflow: scroll; overflow-x: auto;">
+                    <table id="home_fetchtbl" class="table table-bordered" style="text-align: center;">
+                        <thead class="thead-dark" style="background-color: #2C3034; color: #ffff;">
+                            <tr>
+                                <th class="no-wrap">SKU</th>
+                                <th class="no-wrap">Description</th>
+                                <th class="no-wrap">Price</th>
+                                <th class="no-wrap">Quantity</th>
+                                <th class="no-wrap">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="homeTbl">
+                            <!-- info -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="addnew_container" style="display: none;">
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+            <h6 style="color: white"> Add New </h6>
+        </nav>
+
+        <!-- style="margin-top: 5%;" -->
+        <div class="row container-fluid">
+            <div class="form-outline mb-4" style="margin-top: 1%;">
+                <input type="search" class="form-control" id="addnewTbl-search-input" placeholder="Search...">
+                <!-- <label class="form-label" for="datatable-search-input">Search</label> -->
+            </div>
+            
+            <div class="col-md-4" style="background-color: #F5F7FA;">
+                <form id="crtForm" class="form-wrapper">
+                    <div class="form-group" style="margin: 1em;">
+                        <label>SKU:</label>
+                        <input type="text" class="form-control col-md-6" name="addnew_SKU" id="addnew_SKU" value="" required>
+                        <label style="margin-top: 1em;">Description:</label>
+                        <input type="text" class="form-control col-md-6" name="addnew_DES" id="addnew_DES" value="" required>
+                        <label style="margin-top: 1em;">Price:</label>
+                        <input type="text" class="form-control col-md-6" name="addnew_PRICE" id="addnew_PRICE" value="" required>
+                        <label style="margin-top: 1em;">Quantity:</label>
+                        <input type="text" class="form-control col-md-6" name="addnew_QUA" id="addnew_QUA" value="" required>
+                        <label style="margin-top: 1em;">Type:</label>
+                        <input type="text" class="form-control col-md-6" name="addnew_TYPE" id="addnew_TYPE" value="" required>
+                    </div>
+
+                    <div class="d-flex justify-content-center" style="margin-top: 1em;">
+                        <input type="submit" id="addnew_btnSave" value="Save" class="btn btn-primary m-1">
+                        <input type="submit" id="addnew_btnUpdate" value="Update" class="btn btn-warning m-1">
+                        <input type="submit" id="addnew_btnDelete" value="Delete" class="btn btn-danger m-1">
+                        <input type="submit" id="addnew_btnClear" value="Clear" class="btn btn-success m-1">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-8 justify-content-center">
+                <div style="height: 80vh; overflow: scroll; overflow-x: auto;">
+                    <table id="addnew_fetchtbl" class="table table-bordered" style="text-align: center;">
+                        <thead class="thead-dark" style="background-color: #2C3034; color: #ffff;">
+                            <tr>
+                                <th class="no-wrap">SKU</th>
+                                <th class="no-wrap">Description</th>
+                                <th class="no-wrap">Price</th>
+                                <th class="no-wrap">Quantity</th>
+                                <th class="no-wrap">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="addnewTbl">
+                            <!-- info -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="settings_container" style="display: none;">
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+            <h6 style="color: white"> Settings </h6>
+        </nav>
+
+        <div class="d-flex justify-content-center container-fluid" style="margin-top: 5vh;">
+            <form class="form-container col-sm-4 form-wrapper" id="passwordForm">
+                <div class="form-group">
+                    <label for="username">Enter Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                </div>
+    
+                <div class="form-group" style="margin-top: 2vh;">
+                    <label for="currentPassword">Enter Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Current Password" required>
+                </div>
+    
+                <div class="form-group" style="margin-top: 2cqh;">
+                    <label for="newPassword">Enter New Password:</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="New Password" oninput="validatePassword()" required>
+                    <span id="passwordError" style="color: red;"></span>
+                </div>
+    
+                <div class="form-group" style="margin-top: 2vh;">
+                    <label for="retypePassword">Retype New Password:</label>
+                    <input type="password" class="form-control" id="retypePassword" placeholder="New Password" oninput="validatePassword()" required>
+                    <span id="retypeError" style="color: red;"></span>
+                </div>
+    
+                <div class="text-center" style="padding-top: 4vh;">
+                    <input type="submit" name='btn' id="changePass" class="btn btn-info col-md-4" value="Change">
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="about_container" style="display: none;">
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+            <h6 style="color: white"> About </h6>
+        </nav>
+
+        <section class="row justify-content-center container-fluid" style="margin-top: 20vh;">
+            <h4 class="text-center font-weight-bold"> Inventory Management System </h4>
+            <h6 class="text-center">V <span id="Vno"></span></h6>
+        </section>
+    </section>
+
+    <script src="../lib/js/bootstrap.bundle.min.js"></script>
+    <script src="./preload.js"></script>
+</body>
+</html>
